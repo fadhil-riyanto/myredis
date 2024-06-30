@@ -35,7 +35,7 @@ export const SetTargetHost = ({parentRefTokenset, parentRefToken}) => {
                         <h1 className="modal-title fs-5" id="exampleModalLabel">
                             Open connection
                         </h1>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal"/>
+                        {/* <button type="button" className="btn-close" data-bs-dismiss="modal"/> */}
                     </div>
                     <div className="modal-body">
                         <div className="input-group mb-3">
