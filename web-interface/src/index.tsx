@@ -5,8 +5,6 @@ import * as bootstrap from 'bootstrap'
 import "./style.scss"
 import { useEffect } from 'preact/hooks';
 
-// modal
-
 
 export function App() {
 	useEffect(() => {
