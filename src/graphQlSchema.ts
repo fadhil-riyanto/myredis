@@ -1,13 +1,8 @@
-import { GraphQLSchema, GraphQLObjectType, GraphQLString } from "graphql";
+import { buildSchema } from "graphql";
 
-export const schema = new GraphQLSchema({
-    query: new GraphQLObjectType({
-        name: "Query",
-        fields: {
-            hello: {
-                type: GraphQLString,
-                resolve: () => "world"
-            },
-        },
-    }),
-})
+export const schema = buildSchema(`
+    type Query {
+      RedisCreateSession(connstr: String): String
+      Get(keys: String): String
+    }
+`)
