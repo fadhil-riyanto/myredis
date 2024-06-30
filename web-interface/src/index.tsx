@@ -3,16 +3,16 @@ import { SetTargetHost } from './components/SetTargetHost.modal'
 
 import * as bootstrap from 'bootstrap'
 import "./style.scss"
-import { useEffect } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 
 
 export function App() {
-	useEffect(() => {
-		new bootstrap.Modal('#staticBackdropaddhost').show()
-	})
+	const [globalConnToken, globalConnTokenset] = useState(null)
+	
+
 	return (
 		<>
-			<SetTargetHost />
+			<SetTargetHost parentRefTokenset={globalConnTokenset} parentRefToken={globalConnToken} />
 			<h1>hello world</h1>
 		</>
 	);
