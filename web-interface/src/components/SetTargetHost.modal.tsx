@@ -3,6 +3,7 @@ import { useRef, useState } from "preact/hooks"
 import  { graphqlEndpoint } from '../../config'
 import { useEffect } from 'preact/hooks';
 import * as bootstrap from 'bootstrap'
+import { MODE } from '../../config'
 
 export const SetTargetHost = ({parentRefTokenset, parentRefToken}) => {
     const [redishost, redishostSet] = useState(null)
@@ -10,9 +11,14 @@ export const SetTargetHost = ({parentRefTokenset, parentRefToken}) => {
     const query2api = async () => {
         setConnectionState("connecting")
         try {
+            let query = MODE != "development" ? 
+                        `{ RedisCreateSession(connstr: "redis://${redishost}") }` :
+                        `{ RedisCreateSession(connstr: "redis://127.0.0.1:6379") }`
+
+
             let result = await axios.get(graphqlEndpoint, {
                 params: {
-                    query: `{ RedisCreateSession(connstr: "redis://${redishost}") }`
+                    query: query
                 }
             })
 
@@ -32,7 +38,7 @@ export const SetTargetHost = ({parentRefTokenset, parentRefToken}) => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">
+                        <h1 className="modal-title fs-5 text-white" id="exampleModalLabel">
                             Open connection
                         </h1>
                         {/* <button type="button" className="btn-close" data-bs-dismiss="modal"/> */}
