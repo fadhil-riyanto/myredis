@@ -14,7 +14,7 @@ function NavbarSection() {
             <div className=" d-flex p-2 align-items-center">
                 <h3 className="text-white me-5">MyRedis {VERSION}</h3>
                 <button type="button" className="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add record</button>
-                <button type="button" className="btn btn-secondary">Info</button>
+                {/* <button type="button" className="btn btn-secondary">Info</button> */}
             </div>
         </>
     )
