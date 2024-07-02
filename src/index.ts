@@ -5,9 +5,8 @@ import { createHandler } from "graphql-http/lib/use/express"
 import { schema } from "./graphQlSchema"
 import { redisConnect } from "./operations/connect"
 import { sessionTable } from "./SessionTable"
-import { RedisClientType } from 'redis';
 import { AddBySec } from "./utils";
-import { DumpType } from "./type"
+import { DumpType, Addtype } from "./type"
 import date from 'date-and-time';
 
 const preactWorkingDir = path.join(__dirname, "..", "web-interface", "dist")
@@ -48,6 +47,16 @@ const rootValue = {
         // }))
         return realdata
          
+    },
+
+    async Del({ConnToken, key}:{ConnToken:string, key: string}) {
+        return await session.get(ConnToken).redisCtx?.del(key)
+    },
+
+    async Add({ConnToken, data}:{ConnToken:string, data: Addtype}) {
+        return await session.get(ConnToken).redisCtx?.set(data.key, data.value, {
+            EX: data.ttl
+        })
     }
 }
 
@@ -65,4 +74,4 @@ app.all('/graphql', (req: Request, res: Response, next: any) => {
     })
 );
 
-app.listen({ port: 8000 });
+app.listen({ port: 9000 });
