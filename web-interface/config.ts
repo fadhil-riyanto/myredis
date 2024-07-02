@@ -1,4 +1,4 @@
-const MODE = "development"
+let MODE = "production"
 const VERSION = "v1.0.0"
 
 let graphqlEndpoint
